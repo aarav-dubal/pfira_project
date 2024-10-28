@@ -1,179 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFL Player Injury Data</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: white;
-        }
-
-        /* Container */
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Dropdown Styling */
-        select {
-            padding: 10px;
-            border-radius: 10px;
-            border: none;
-            margin: 10px;
-            font-size: 18px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Generate Button */
-        #generateButton {
-            background: linear-gradient(90deg, #ff8a00 0%, #e52e71 100%);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            padding: 15px 30px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
-        }
-
-        #generateButton:hover {
-            background: linear-gradient(90deg, #e52e71 0%, #ff8a00 100%);
-        }
-
-        /* Table Styling */
-        table {
-            width: 100%;
-            margin-top: 30px;
-            border-collapse: collapse;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        th, td {
-            padding: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        th {
-            background: rgba(255, 255, 255, 0.2);
-            font-size: 18px;
-        }
-
-        td {
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 16px;
-        }
-
-        /* Scrollable Table */
-        tbody {
-            display: block;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        thead, tbody tr {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        /* Make sure dropdown labels are clearly visible */
-        label {
-            font-size: 18px;
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Select Position and Team</h1>
-
-
-<label for="positions">Select a Player Category:</label>
-<select id="positions">
-    <option value="Quarterbacks">Quarterbacks</option>
-    <option value="Running Backs">Running Backs</option>
-    <option value="Wide Receivers">Wide Receivers</option>
-    <option value="Tight Ends">Tight Ends</option>
-    <option value="Defensive Linemen">Defensive Linemen</option>
-    <option value="Linebackers">Linebackers</option>
-    <option value="Defensive Backs">Defensive Backs</option>
-</select>
-
-<label for="team">Select Team:</label>
-<select id="team" onchange="updatePlayerList()">
-    <option value="all">All Teams</option>
-    <option value="ARI">ARI</option>
-    <option value="ATL">ATL</option>
-    <option value="BAL">BAL</option>
-    <option value="BUF">BUF</option>
-    <option value="CAR">CAR</option>
-    <option value="CHI">CHI</option>
-    <option value="CIN">CIN</option>
-    <option value="CLE">CLE</option>
-    <option value="DAL">DAL</option>
-    <option value="DEN">DEN</option>
-    <option value="DET">DET</option>
-    <option value="GB">GB</option>
-    <option value="HOU">HOU</option>
-    <option value="IND">IND</option>
-    <option value="JAX">JAX</option>
-    <option value="KC">KC</option>
-    <option value="LV">LV</option>
-    <option value="LAC">LAC</option>
-    <option value="LAR">LAR</option>
-    <option value="MIA">MIA</option>
-    <option value="MIN">MIN</option>
-    <option value="NE">NE</option>
-    <option value="NO">NO</option>
-    <option value="NYG">NYG</option>
-    <option value="NYJ">NYJ</option>
-    <option value="PHI">PHI</option>
-    <option value="PIT">PIT</option>
-    <option value="SF">SF</option>
-    <option value="SEA">SEA</option>
-    <option value="TB">TB</option>
-    <option value="TEN">TEN</option>
-    <option value="WAS">WAS</option>
-</select>
-
-<table id="playerTable">
-    <thead>
-        <tr>
-            <th>Player Name</th>
-            <th>Season Injury Probability (%)</th>
-            <th>Team</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Player data will be inserted here -->
-    </tbody>
-</table>
-
-<script>
 const quarterbacks = [
     { Player_Name: 'Lamar Jackson', Season_Injury_Probability: 42.5, Team: 'BAL' },{ Player_Name: 'Josh Allen', Season_Injury_Probability: 11.8, Team: 'BUF' },
     { Player_Name: 'Jalen Hurts', Season_Injury_Probability: 55.7, Team: 'PHI' },{ Player_Name: 'Jayden Daniels', Season_Injury_Probability: 28.3, Team: 'WAS' },
@@ -264,81 +88,54 @@ const tightEnds = [
 ];
 
 const defensiveLinemen = [
-    { Player_Name: 'Joshua Hines-Allen', Season_Injury_Probability: 13.2, Team: 'JAX' },{ Player_Name: 'Khalil Mack', Season_Injury_Probability: 22.1, Team: 'LAC' },
-    { Player_Name: 'Joey Bosa', Season_Injury_Probability: 78.9, Team: 'LAC' },{ Player_Name: 'Jadeveon Clowney', Season_Injury_Probability: 41, Team: 'CAR' },
-    { Player_Name: 'Dante Fowler', Season_Injury_Probability: 6.5, Team: 'WAS' },{ Player_Name: 'Leonard Williams', Season_Injury_Probability: 24.4, Team: 'SEA' },
-    { Player_Name: 'Calais Campbell', Season_Injury_Probability: 5.0, Team: 'MIA' },{ Player_Name: 'Von Miller', Season_Injury_Probability: 17.0, Team: 'BUF' },
-    { Player_Name: 'Uchenna Nwosu', Season_Injury_Probability: 17.9, Team: 'SEA' },{ Player_Name: 'David Ojabo', Season_Injury_Probability: 19.4, Team: 'BAL' },
-    { Player_Name: 'Daron Payne', Season_Injury_Probability: 13.2, Team: 'WAS' },{ Player_Name: 'Jonathan Allen', Season_Injury_Probability: 17.6, Team: 'WAS' }
+    { Player_Name: 'Joshua Hines-Allen', Season_Injury_Probability: 13.2, Team: 'JAX' },
+    { Player_Name: 'Khalil Mack', Season_Injury_Probability: 22.1, Team: 'LAC' },
+    { Player_Name: 'Joey Bosa', Season_Injury_Probability: 78.9, Team: 'LAC' },
+    { Player_Name: 'Jadeveon Clowney', Season_Injury_Probability: 41, Team: 'CAR' },
+    { Player_Name: 'Dante Fowler', Season_Injury_Probability: 6.5, Team: 'WAS' },
+    { Player_Name: 'Leonard Williams', Season_Injury_Probability: 24.4, Team: 'SEA' },
+    { Player_Name: 'Calais Campbell', Season_Injury_Probability: 5.0, Team: 'MIA' },
+    { Player_Name: 'Von Miller', Season_Injury_Probability: 17.0, Team: 'BUF' },
+    { Player_Name: 'Uchenna Nwosu', Season_Injury_Probability: 17.9, Team: 'SEA' },
+    { Player_Name: 'David Ojabo', Season_Injury_Probability: 19.4, Team: 'BAL' },
+    { Player_Name: 'Daron Payne', Season_Injury_Probability: 13.2, Team: 'WAS' },
+    { Player_Name: 'Jonathan Allen', Season_Injury_Probability: 17.6, Team: 'WAS' }
 ];
 
 const linebackers = [
-    { Player_Name: 'Roquan Smith', Season_Injury_Probability: 20.1, Team: 'BAL' },{ Player_Name: 'Logan Wilson', Season_Injury_Probability: 29.2, Team: 'CIN' },
-    { Player_Name: 'Bobby Wagner', Season_Injury_Probability: 18, Team: 'WAS' },{ Player_Name: 'Jeremiah Owusu-Koramoah', Season_Injury_Probability: 29.6, Team: 'CLE' },
-    { Player_Name: 'Frankie Luvu', Season_Injury_Probability: 20.6, Team: 'WAS' },{ Player_Name: 'Tremaine Edmunds', Season_Injury_Probability: 80.0, Team: 'CHI' },
-    { Player_Name: 'Eric Kendricks', Season_Injury_Probability: 20.3, Team: 'DAL' },{ Player_Name: 'Josey Jewell', Season_Injury_Probability: 40.7, Team: 'CAR' },
-    { Player_Name: 'Jordan Hicks', Season_Injury_Probability: 8.9, Team: 'CLE' },{ Player_Name: 'Troy Andersen', Season_Injury_Probability: 30.1, Team: 'ATL' },
-    { Player_Name: 'Denzel Perryman', Season_Injury_Probability: 42.0, Team: 'LAC' },{ Player_Name: 'Shaq Thompson', Season_Injury_Probability: 32.4, Team: 'CAR' },
-    { Player_Name: 'Kyle Van Noy', Season_Injury_Probability: 22.0, Team: 'BAL' },{ Player_Name: 'Matt Milano', Season_Injury_Probability: 18.2, Team: 'BUF' }
+    { Player_Name: 'Roquan Smith', Season_Injury_Probability: 20.1, Team: 'BAL' },
+    { Player_Name: 'Logan Wilson', Season_Injury_Probability: 29.2, Team: 'CIN' },
+    { Player_Name: 'Bobby Wagner', Season_Injury_Probability: 18, Team: 'WAS' },
+    { Player_Name: 'Jeremiah Owusu-Koramoah', Season_Injury_Probability: 29.6, Team: 'CLE' },
+    { Player_Name: 'Frankie Luvu', Season_Injury_Probability: 20.6, Team: 'WAS' },
+    { Player_Name: 'Tremaine Edmunds', Season_Injury_Probability: 80.0, Team: 'CHI' },
+    { Player_Name: 'Eric Kendricks', Season_Injury_Probability: 20.3, Team: 'DAL' },
+    { Player_Name: 'Josey Jewell', Season_Injury_Probability: 40.7, Team: 'CAR' },
+    { Player_Name: 'Jordan Hicks', Season_Injury_Probability: 8.9, Team: 'CLE' },
+    { Player_Name: 'Troy Andersen', Season_Injury_Probability: 30.1, Team: 'ATL' },
+    { Player_Name: 'Denzel Perryman', Season_Injury_Probability: 42.0, Team: 'LAC' },
+    { Player_Name: 'Shaq Thompson', Season_Injury_Probability: 32.4, Team: 'CAR' },
+    { Player_Name: 'Kyle Van Noy', Season_Injury_Probability: 22.0, Team: 'BAL' },
+    { Player_Name: 'Matt Milano', Season_Injury_Probability: 18.2, Team: 'BUF' }
 ];
 
 const defensiveBacks = [
-    { Player_Name: 'Marlon Humphrey', Season_Injury_Probability: 50.8, Team: 'BAL' },{ Player_Name: 'Carlton Davis', Season_Injury_Probability: 64.9, Team: 'DET' },
-    { Player_Name: 'Stephon Gilmore', Season_Injury_Probability: 82.9, Team: 'MIN' },{ Player_Name: 'Trevon Diggs', Season_Injury_Probability: 31.3, Team: 'DAL' },
-    { Player_Name: 'Jaycee Horn', Season_Injury_Probability: 41.5, Team: 'CAR' },{ Player_Name: 'Denzel Ward', Season_Injury_Probability: 45.6, Team: 'CLE' },
-    { Player_Name: 'AJ Terrell', Season_Injury_Probability: 30.3, Team: 'ATL' },{ Player_Name: 'Mike Hughes', Season_Injury_Probability: 19.7, Team: 'ATL' },
-    { Player_Name: 'Devon Witherspoon', Season_Injury_Probability: 29.4, Team: 'SEA' },{ Player_Name: 'Derwin James', Season_Injury_Probability: 65.8, Team: 'LAC' },
-    { Player_Name: 'Budda Baker', Season_Injury_Probability: 37.9, Team: 'ARI' },{ Player_Name: 'Kyle Hamilton', Season_Injury_Probability: 75.3, Team: 'BAL' },
-    { Player_Name: 'Brandon Jones', Season_Injury_Probability: 35.8, Team: 'DEN' },{ Player_Name: 'Grant Delpit', Season_Injury_Probability: 18.9, Team: 'CLE' },
-    { Player_Name: 'Jeremy Chinn', Season_Injury_Probability: 29.2, Team: 'CAR' },{ Player_Name: 'Vonn Bell', Season_Injury_Probability: 28.2, Team: 'CIN' },
-    { Player_Name: 'Jordan Fuller', Season_Injury_Probability: 28.2, Team: 'CAR' },{ Player_Name: 'Malik Hooker', Season_Injury_Probability: 16.0, Team: 'DAL' }
+    { Player_Name: 'Marlon Humphrey', Season_Injury_Probability: 50.8, Team: 'BAL' },
+    { Player_Name: 'Carlton Davis', Season_Injury_Probability: 64.9, Team: 'DET' },
+    { Player_Name: 'Stephon Gilmore', Season_Injury_Probability: 82.9, Team: 'MIN' },
+    { Player_Name: 'Trevon Diggs', Season_Injury_Probability: 31.3, Team: 'DAL' },
+    { Player_Name: 'Jaycee Horn', Season_Injury_Probability: 41.5, Team: 'CAR' },
+    { Player_Name: 'Denzel Ward', Season_Injury_Probability: 45.6, Team: 'CLE' },
+    { Player_Name: 'AJ Terrell', Season_Injury_Probability: 30.3, Team: 'ATL' },
+    { Player_Name: 'Mike Hughes', Season_Injury_Probability: 19.7, Team: 'ATL' },
+    { Player_Name: 'Devon Witherspoon', Season_Injury_Probability: 29.4, Team: 'SEA' },
+    { Player_Name: 'Derwin James', Season_Injury_Probability: 65.8, Team: 'LAC' },
+    { Player_Name: 'Budda Baker', Season_Injury_Probability: 37.9, Team: 'ARI' },
+    { Player_Name: 'Kyle Hamilton', Season_Injury_Probability: 75.3, Team: 'BAL' },
+    { Player_Name: 'Brandon Jones', Season_Injury_Probability: 35.8, Team: 'DEN' },
+    { Player_Name: 'Grant Delpit', Season_Injury_Probability: 18.9, Team: 'CLE' },
+    { Player_Name: 'Jeremy Chinn', Season_Injury_Probability: 29.2, Team: 'CAR' },
+    { Player_Name: 'Vonn Bell', Season_Injury_Probability: 28.2, Team: 'CIN' },
+    { Player_Name: 'Jordan Fuller', Season_Injury_Probability: 28.2, Team: 'CAR' },
+    { Player_Name: 'Malik Hooker', Season_Injury_Probability: 16.0, Team: 'DAL' }
 ];
-
-function generatePlayerData() {
-            const position = document.getElementById('position').value;
-            const team = document.getElementById('team').value;
-
-            // Clear the previous data
-            const tableBody = document.getElementById('playerData');
-            tableBody.innerHTML = '';
-
-            let players = [];
-
-            // Select the right data array based on position
-            if (position === 'qb') {
-                players = qb;
-            } else if (position === 'rb') {
-                players = rb;
-            } else if (position === 'wr') {
-                players = wr;
-            } else if (position === 'te') {
-                players = te;
-            } else if (position === 'dl') {
-                players = dl;
-            } else if (position === 'lb') {
-                players = lb;
-            } else if (position === 'db') {
-                players = db;
-            }
-
-            // Filter players by the selected team
-            const filteredPlayers = players.filter(player => player.Team === team);
-
-            // Insert the player data into the table
-            filteredPlayers.forEach(player => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${player.Player_Name}</td>
-                    <td>${player.Season_Injury_Probability}</td>
-                    <td>${player.Team}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Add event listener to the "Generate" button
-        document.getElementById('generateButton').addEventListener('click', generatePlayerData);
-</script>
-<button onclick="generatePlayerData()">Generate Player Data</button>
-</body>
-</html>
